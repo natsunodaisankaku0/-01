@@ -2,7 +2,7 @@
 
 // Arduino pin assignment
 #define PIN_LED   6   // LED active-low
-#define PIN_TRIG  12  // sonar sensor TRIGGER
+#define PIN_TRIG  8  // sonar sensor TRIGGER
 #define PIN_ECHO  13  // sonar sensor ECHO
 #define PIN_SERVO 10  // servo motor
 
