@@ -81,13 +81,18 @@ void loop() {
 
   // adjust servo position according to the USS read value
   // add your code here!
-  if (dist_ema < _TARGET_LOW) {
-    myservo.writeMicroseconds(_DUTY_MIN);
-  } else if (dist_ema > _TARGET_HIGH) {
-    myservo.writeMicroseconds(_DUTY_MAX);
-  } else {
-    myservo.writeMicroseconds((_DUTY_MAX - _DUTY_MIN) / 18 * dist_ema - _DUTY_MAX - _DUTY_MIN);
-  }
+  if (dist_ema <= _TARGET_LOW) {
+  myservo.writeMicroseconds(_DUTY_MIN);
+} else if (dist_ema >= _TARGET_HIGH) {
+  myservo.writeMicroseconds(_DUTY_MAX);
+} else {
+  float duty = _DUTY_MIN
+      + (dist_ema - _TARGET_LOW)
+      / (_TARGET_HIGH - _TARGET_LOW)
+      * (_DUTY_MAX - _DUTY_MIN);
+
+  myservo.writeMicroseconds((int)duty);
+}
 
 
   // output the distance to the serial port
